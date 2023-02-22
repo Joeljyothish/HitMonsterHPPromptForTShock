@@ -35,7 +35,7 @@ jobs:
       - name: Build
         run: |
           cd ClassLibrary1
-          dotnet publish -r win-x64 -f net6.0 -c Release --self-contained false
+          dotnet publish -r win-x64 -f net6.0 -c Release --self-contained true
 
       - name: 复制文件
         run: |
