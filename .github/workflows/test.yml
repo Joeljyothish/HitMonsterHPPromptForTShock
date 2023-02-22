@@ -35,7 +35,7 @@ jobs:
       - name: Build
         run: |
           cd ClassLibrary1
-          dotnet publish -r win-x64 -f net6.0 -c Release --self-contained true
+          dotnet publish -r win-x64 -f net6.0 -c Release --self-contained false
 
       - name: 复制文件
         run: |
@@ -46,4 +46,5 @@ jobs:
         with:
           name: Test-win-x64-Release
           path: |
-              ClassLibrary1/bin/Release/net6.0/win-x64/publish/
+              ClassLibrary1/bin/Release/net6.0/win-x64/publish/说明.txt
+              ClassLibrary1/bin/Release/net6.0/win-x64/publish/击打提示怪物血量.dll
