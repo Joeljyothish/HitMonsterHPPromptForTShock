@@ -30,13 +30,14 @@ jobs:
 
      - name: 打包
        run: |
-          Compress-Archive -Path ./ClassLibrary1/bin/Release/net6.0/win-x64/publish/击打提示怪物血量.dll,说明.txt Release-win-x64.zip
+          Compress-Archive -Path ./ClassLibrary1/bin/Release/net6.0/win-x64/publish/击打提示怪物血量.dll,说明.txt ./ClassLibrary1/bin/Release/net6.0/win-x64/publish/Release-win-x64.zip
           
-     - name: CI Artifact
-       uses: actions/upload-artifact@v3
+     - name: 上传资源
+       uses: svenstaro/upload-release-action@v2
        with:
-          name: Test-win-x64-Release
-          path: |
-              Release-win-x64.zip
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./ClassLibrary1/bin/Release/net6.0/win-x64/publish/Release-win-x64.zip
+        tag: ${{ github.ref }}
+        overwrite: true
 
 
