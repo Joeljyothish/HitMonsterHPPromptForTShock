@@ -38,6 +38,7 @@ jobs:
        with:
          token: ${{secrets.GITHUB_TOKEN}}
          release: ${{ github.ref }}
+         tag: ${{ github.ref_type }}
          replace: true
          files: >
            Release-win-x64.zip
