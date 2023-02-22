@@ -39,10 +39,4 @@ jobs:
           path: |
               Release-win-x64.zip
 
-     - name: 上传资源
-       uses: svenstaro/upload-release-action@v2
-       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: Release-win-x64.zip
-        tag: ${{ github.ref }}
-        overwrite: true
+
