@@ -30,14 +30,18 @@ jobs:
 
      - name: 打包
        run: |
-          Compress-Archive -Path ./ClassLibrary1/bin/Release/net6.0/win-x64/publish/击打提示怪物血量.dll,说明.txt ./ClassLibrary1/bin/Release/net6.0/win-x64/publish/Release-win-x64.zip
+          Compress-Archive -Path ./ClassLibrary1/bin/Release/net6.0/win-x64/publish/击打提示怪物血量.dll,说明.txt Release-win-x64.zip
           
-     - name: 上传资源
-       uses: svenstaro/upload-release-action@v2
+     
+     
+     - uses: IsaacShelton/update-existing-release@v1.3.2
        with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: ./ClassLibrary1/bin/Release/net6.0/win-x64/publish/Release-win-x64.zip
-        tag: ${{ github.ref }}
-        overwrite: true
+         token: ${{secrets.GITHUB_TOKEN}}
+         release: ${{ github.ref }}
+         replace: true
+         files: >
+           Release-win-x64.zip
+      
+     
 
 
