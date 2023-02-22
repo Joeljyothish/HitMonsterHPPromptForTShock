@@ -32,10 +32,7 @@ namespace TestPlugin
         public override void Initialize()// 插件启动时，用于初始化各种狗子
         {
             ServerApi.Hooks.GameInitialize.Register(this, OnInitialize);//钩住游戏初始化时
-            //ServerApi.Hooks.NetGetData.Register(this, GetData);
             ServerApi.Hooks.NpcStrike.Register(this, NpcStrike);
-
-
             ServerApi.Hooks.NetGreetPlayer.Register(this, OnGreetPlayer);//玩家进入服务器
             ServerApi.Hooks.ServerLeave.Register(this, OnLeave);//玩家退出服务器
         }
@@ -44,11 +41,7 @@ namespace TestPlugin
             if (disposing)
             {
                 ServerApi.Hooks.GameInitialize.Deregister(this, OnInitialize);//销毁游戏初始化狗子
-                //ServerApi.Hooks.NetGetData.Deregister(this, GetData);
                 ServerApi.Hooks.NpcStrike.Deregister(this, NpcStrike);
-
-
-
                 ServerApi.Hooks.NetGreetPlayer.Deregister(this, OnGreetPlayer);//玩家进入服务器
                 ServerApi.Hooks.ServerLeave.Deregister(this, OnLeave);//玩家退出服务器
             }
@@ -67,13 +60,8 @@ namespace TestPlugin
         {
             public int Index { get; set; }
             public DateTime LastTiem { get; set; }
-            //public int npcid { get; set; }
-            //public int life { get; set; }
-
             public LPlayer(int index)
             {
-                //life = 0;
-                //npcid = 0;
                 Index = index;
                 LastTiem = DateTime.UtcNow;
             }
@@ -94,16 +82,10 @@ namespace TestPlugin
             if (args.Damage == -1) return;
             if (!args.Npc.active) return;
             if (args.Npc.lifeMax < TShock.Config.Settings.MaxDamage) return;//只针对怪物血量大于伤害最大值的怪
-            //int Llife = 0;
-            //int Lid = 0;
             lock (LPlayers)//锁定
             {
                 if ((DateTime.UtcNow - LPlayers[args.Player.whoAmI].LastTiem).TotalMilliseconds < 900) return;
-                LPlayers[args.Player.whoAmI].LastTiem = DateTime.UtcNow;
-                //Llife = LPlayers[args.Player.whoAmI].life;
-                //Lid = LPlayers[args.Player.whoAmI].npcid;
-                //LPlayers[args.Player.whoAmI].life = args.Npc.life;
-                //LPlayers[args.Player.whoAmI].npcid = args.Npc.netID;
+                LPlayers[args.Player.whoAmI].LastTiem = DateTime.UtcNow;//防止连续提示
             }
 
             Color c = new Color(0, 255, 255);
@@ -142,10 +124,7 @@ namespace TestPlugin
                     text += "▯";
             }
             text += "▏" + a + "%";
-
             // user.SendData(PacketTypes.CreateCombatTextExtended, text2, (int)c.PackedValue, args.Npc.Center.X, args.Npc.Center.Y);
-
-
             user.SendData(PacketTypes.CreateCombatTextExtended, text, (int)c.PackedValue, user.X, user.Y);
 
         }
