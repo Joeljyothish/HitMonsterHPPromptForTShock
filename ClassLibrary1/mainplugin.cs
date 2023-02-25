@@ -14,7 +14,7 @@ namespace TestPlugin
     [ApiVersion(2, 1)]//api版本
     public class TestPlugin : TerrariaPlugin
     {
-        public override string Author => "GK 阁下";// 插件作者
+        public override string Author => "GK Your Mightiness";// 插件作者
         public override string Description => "击打高血量怪物时飘动提示怪物血量！";// 插件说明
         public override string Name => "击打提示怪物血量";// 插件名字
         public override Version Version => new Version(1, 0, 0, 1);// 插件版本
@@ -96,17 +96,17 @@ namespace TestPlugin
 
             //    int a = args.Npc.life * 100 / args.Npc.lifeMax;
             //    int i = (Llife * 100 / args.Npc.lifeMax) - a;
-            //    Console.WriteLine("差距{0}", i);
+            //    Console.WriteLine("gap{0}", i);
             //    if (i >= 5)
-            //        user.SendMessage(args.Npc.FullName + "剩余"+ a + "%血量:" + args.Npc.life + "", c);
+            //        user.SendMessage(args.Npc.FullName + "gap"+ a + "%HP:" + args.Npc.life + "", c);
             //}
 
-            //Console.WriteLine("最大血量{0}，血量{1}" , args.Npc.lifeMax, args.Npc.life);
+            //Console.WriteLine("Maximum HP{0}，HP{1}" , args.Npc.lifeMax, args.Npc.life);
 
             int a = args.Npc.life * 100 / args.Npc.lifeMax;
 
 
-            //string text = "["+args.Npc.FullName + "]剩"+ a + "%血:" + args.Npc.life + "";
+            //string text = "["+args.Npc.FullName + "]left"+ a + "%Blood:" + args.Npc.life + "";
 
             string text = args.Npc.FullName + "▕";
 
